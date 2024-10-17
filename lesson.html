@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кафе та Ресторани</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100">
+
+    <!-- Верхнє меню -->
+    <header class="bg-green-600 p-4">
+        <nav class="container mx-auto flex justify-between">
+            <div class="text-white font-bold text-lg">Кафе "Смачно"</div>
+            <ul class="flex space-x-4">
+                <li><a href="#menu" class="text-white hover:underline">Меню</a></li>
+                <li><a href="#specials" class="text-white hover:underline">Спеціальні Пропозиції</a></li>
+                <li><a href="#reviews" class="text-white hover:underline">Відгуки</a></li>
+                <li><a href="#contact" class="text-white hover:underline">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Контент -->
+    <main class="container mx-auto my-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            <!-- Меню -->
+            <section id="menu" class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold">Меню</h2>
+                <img src="https://via.placeholder.com/300x200" alt="Страва 1" class="w-full h-40 object-cover rounded mt-2">
+                <p class="mt-2">Салат "Цезар" - 120 грн</p>
+                <p class="mt-2">Курка гриль - 150 грн</p>
+                <p class="mt-2">Десерт "Тірамісу" - 80 грн</p>
+                <button class="mt-4 bg-green-600 text-white py-2 px-4 rounded">Замовити</button>
+            </section>
+
+            <!-- Спеціальні Пропозиції -->
+            <section id="specials" class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold">Спеціальні Пропозиції</h2>
+                <img src="https://via.placeholder.com/300x200" alt="Спеціальна пропозиція" class="w-full h-40 object-cover rounded mt-2">
+                <p class="mt-2">Знижка 20% на всі десерти у неділю!</p>
+                <button class="mt-4 bg-green-600 text-white py-2 px-4 rounded">Деталі</button>
+            </section>
+
+            <!-- Відгуки -->
+            <section id="reviews" class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold">Відгуки</h2>
+                <img src="https://via.placeholder.com/300x200" alt="Відгуки" class="w-full h-40 object-cover rounded mt-2">
+                <p class="mt-2">"Смачна їжа і привітний персонал!" - Олена</p>
+                <p class="mt-2">"Чудове місце для вечері!" - Ігор</p>
+                <button class="mt-4 bg-green-600 text-white py-2 px-4 rounded">Додати відгук</button>
+            </section>
+
+            <!-- Контактна Інформація -->
+            <section id="contact" class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-bold">Контактна Інформація</h2>
+                <img src="https://via.placeholder.com/300x200" alt="Контакти" class="w-full h-40 object-cover rounded mt-2">
+                <p class="mt-2">Телефон: +380 123 456 789</p>
+                <p class="mt-2">Email: cafe@example.com</p>
+                <p class="mt-2">Адреса: вул. Смачної, 1, Київ</p>
+                <button class="mt-4 bg-green-600 text-white py-2 px-4 rounded">Зв'язатися</button>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="bg-green-600 p-4 mt-8">
+        <div class="container mx-auto text-white text-center">
+            <p>© 2024 Кафе "Смачно". Усі права захищені.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
