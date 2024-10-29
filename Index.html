@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Кав'ярня</title>
-  <link href="style.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
 </head>
 <body class="bg-brown-50 font-sans">
 
@@ -60,6 +60,49 @@
     </div>
   </section>
 
+  <!-- Форма для динамічного списку покупок -->
+  <section class="py-12">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-brown-800 mb-8 text-center">Список покупок</h2>
+      <div class="flex flex-col md:flex-row justify-between">
+        <!-- Форма -->
+        <div class="bg-white p-6 rounded-lg shadow-md w-full md:w-1/3">
+          <form id="shopping-form">
+            <div class="mb-4">
+              <label for="item-name" class="block text-brown-800">Назва покупки:</label>
+              <input type="text" id="item-name" class="w-full p-2 border border-brown-400 rounded" required>
+            </div>
+            <div class="mb-4">
+              <label for="item-price" class="block text-brown-800">Вартість:</label>
+              <input type="number" id="item-price" class="w-full p-2 border border-brown-400 rounded" required>
+            </div>
+            <div class="mb-4">
+              <label for="item-image" class="block text-brown-800">Оберіть зображення:</label>
+              <select id="item-image" class="w-full p-2 border border-brown-400 rounded">
+                <option value="coffee1.jpg">Еспресо</option>
+                <option value="coffee2.jpg">Лате</option>
+                <option value="coffee3.jpg">Капучино</option>
+              </select>
+            </div>
+            <button type="submit" class="bg-brown-600 text-white px-6 py-2 rounded-full hover:bg-brown-800">Додати</button>
+          </form>
+        </div>
+
+        <!-- Список покупок -->
+        <div id="shopping-list" class="w-full md:w-2/3 p-6">
+          <h3 class="text-2xl font-bold text-brown-800 mb-4">Додані покупки</h3>
+          <div id="list-items"></div>
+        </div>
+      </div>
+
+      <!-- Інформаційний блок -->
+      <div class="mt-8 bg-white p-6 rounded-lg shadow-md text-center">
+        <p class="text-xl text-brown-800">Кількість покупок: <span id="item-count">0</span></p>
+        <p class="text-xl text-brown-800">Загальна вартість: <span id="total-price">0</span> грн</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Футер -->
   <footer class="bg-brown-800 text-white py-6">
     <div class="container mx-auto text-center">
@@ -72,5 +115,62 @@
     </div>
   </footer>
 
+  <script>
+    // Масив для збереження покупок
+    let shoppingItems = [];
+
+    // Функція для оновлення списку покупок
+    function updateShoppingList() {
+      const listContainer = document.getElementById('list-items');
+      const itemCount = document.getElementById('item-count');
+      const totalPrice = document.getElementById('total-price');
+
+      // Очищення списку перед оновленням
+      listContainer.innerHTML = '';
+
+      // Підрахунок загальної кількості покупок та вартості
+      let count = shoppingItems.length;
+      let total = shoppingItems.reduce((sum, item) => sum + item.price, 0);
+
+      itemCount.textContent = count;
+      totalPrice.textContent = total;
+
+      // Додавання нових елементів
+      shoppingItems.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('bg-brown-100', 'p-4', 'rounded-lg', 'mb-4', 'flex', 'justify-between', 'items-center');
+        itemDiv.innerHTML = `
+          <div>
+            <h4 class="text-lg text-brown-800 font-bold">${item.name}</h4>
+            <p class="text-brown-600">${item.price} грн</p>
+          </div>
+          <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg">
+          <button onclick="removeItem(${index})" class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-700">Видалити</button>
+        `;
+        listContainer.appendChild(itemDiv);
+      });
+    }
+
+    // Функція для видалення елемента
+    function removeItem(index) {
+      shoppingItems.splice(index, 1);
+      updateShoppingList();
+    }
+
+    // Обробка форми
+    document.getElementById('shopping-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const itemName = document.getElementById('item-name').value;
+      const itemPrice = parseFloat(document.getElementById('item-price').value);
+      const itemImage = document.getElementById('item-image').value;
+
+      shoppingItems.push({ name: itemName, price: itemPrice, image: itemImage });
+      updateShoppingList();
+
+      // Очищення полів форми
+      document.getElementById('item-name').value = '';
+      document.getElementById('item-price').value = '';
+    });
+  </script>
 </body>
 </html>
